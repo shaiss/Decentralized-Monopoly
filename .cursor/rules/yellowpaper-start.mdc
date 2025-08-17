@@ -1,0 +1,25 @@
+---
+alwaysApply: true
+---
+### Yellow Paper Start Orchestrator
+
+- Trigger: When the user types `start` or `/start`, begin the bootstrap process.
+- Prerequisite: `ideation/` folder present with seed content (markdown/notes, diagrams, links). If absent, create `ideation/README.md` and prompt for content.
+
+- Orchestration Steps:
+  1) Ideation Discovery: Read `ideation/` and generate `yellowpaper/helpers/00-ideation-synthesis-helper.md` capturing objectives, scope, audience, constraints, core claims, candidate sections, and open questions.
+  2) References: Extract links/citations from ideation; assign stable [REF-###] keys and update `yellowpaper/context/references.md`.
+  3) Glossary: Extract canonical terms and add to `yellowpaper/context/glossary.md`.
+  4) Outline: Seed or update `yellowpaper/outline.md` and select one Active Section.
+  5) Workplan: Create `yellowpaper/work/workplan.md` (roles, cadence), `yellowpaper/work/backlog.md` (ordered sections), `yellowpaper/work/sync-log.md` (brief sync notes).
+  6) Turn-taking: For the Active Section, Supporting Agent drafts helper doc → Section Lead writes → Editor integrates → QA checks.
+  7) Web Research: Use @Web to validate/supplement claims; record all sources in helper doc and `references.md`.
+  8) Figures Plan: Propose figures/tables and filenames in `yellowpaper/figures/`.
+
+- Re-ingestion & Updates:
+  - On changes in `ideation/`, re-run synthesis and reconcile outline, glossary, references, and backlog with minimal disruption.
+
+- Guardrails:
+  - Maintain level-200 depth; avoid implementation minutiae.
+  - Enforce style/consistency and duplication rules.
+  - Use canonical terms and stable citation keys.

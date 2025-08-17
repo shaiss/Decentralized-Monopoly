@@ -1,0 +1,90 @@
+---
+alwaysApply: true
+---
+### Yellow Paper Authoring Playbook (Web3/Blockchain/AI)
+
+- **Purpose**: Coordinate multiple AI agents to produce a cohesive, technically accurate yellow paper with level-200 depth. Prevent duplication, maintain congruity, and ensure clear, high-signal writing.
+
+- **Scope & Depth**:
+  - Keep explanations at level-200: conceptual architecture, interfaces, invariants, and economic/security rationales; avoid low-level implementation details.
+  - Use simplified language while remaining precise; prefer definitions, interfaces, and examples over code.
+
+- **Outline First (Single Source of Truth)**:
+  - Create and maintain the canonical outline in [yellowpaper/outline.md](mdc:yellowpaper/outline.md).
+  - Proposed top-level sections:
+    1) Abstract
+    2) Introduction & Problem Statement
+    3) Architecture Overview (System & Data Flows)
+    4) Protocol Mechanics (On-chain/Off-chain, Agents, Contracts)
+    5) Economic Model (Tokenomics, Incentives, Market Design)
+    6) Security Model & Risk Management
+    7) Governance, Compliance, and Legal Considerations
+    8) Implementation Notes (Level-200), Interoperability
+    9) Roadmap & Milestones
+    10) Glossary
+    11) References
+  - Only one "Active Section" at a time. All others remain in the backlog until the active one passes QA.
+
+- **Roles & Responsibilities**:
+  - **Section Lead (Primary Writer)**: Owns the section draft and integrates inputs; accountable for coherence and adherence to the style guide.
+  - **Supporting Research Agent(s)**: Produce the helper document with curated sources, definitions, and key claims; propose figures/tables.
+  - **Editor/Integrator**: Harmonizes tone, resolves overlaps, enforces taxonomy, and integrates the section into the master document.
+  - **QA/Consistency Agent**: Runs duplication checks, cross-references terms, validates citations, and confirms compliance with acceptance criteria.
+
+- **Turn-Taking Workflow (Per Section Cycle)**:
+  1) Supporting agent(s) draft a helper doc at `yellowpaper/helpers/<section>-helper.md` capturing:
+     - Objective, scope, definitions, assumptions/constraints
+     - Key claims with citations; comparative context from @Web research
+     - Proposed diagrams/tables and their captions
+     - Dependencies on other sections and canonical terms
+  2) Section Lead writes `yellowpaper/sections/<section>.md` using the section template, drawing from the helper doc.
+  3) Editor integrates the approved section into `yellowpaper/yellowpaper.md` (or the chosen master file).
+  4) QA agent runs consistency/duplication checks and updates taxonomy. Only then mark the next section as Active.
+
+- **Shared Knowledge Repository**:
+  - Maintain a centralized context hub at [yellowpaper/context/index.md](mdc:yellowpaper/context/index.md) with:
+    - Canonical glossary and term definitions
+    - System components and interfaces (names, roles, invariants)
+    - Citations registry (keys, titles, URLs)
+  - Use a publish/subscribe protocol: when any agent adds/changes a term, they must update the index and notify the team in the section PR.
+
+- **Consistency & Coherence Rules**:
+  - Use canonical names from the glossary; avoid synonyms for the same concept across sections.
+  - Cross-reference related sections with explicit anchors and keep a "Dependencies" sub-section where needed.
+  - Schedule brief synchronization after each completed section and at least weekly to prevent drift.
+
+- **Web Research & Citations**:
+  - Use @Web research to gather best practices and required content; record sources in the helper doc and final References section.
+  - All normative or comparative claims must include citations. Prefer primary sources and reputable standards/best-practice guides.
+
+- **Visual Aids**:
+  - Store diagrams in `yellowpaper/figures/` and reference them with numbered captions ("Figure N: …").
+  - Keep a consistent visual style and labeling across all figures and tables.
+
+- **Legal/Regulatory & Risks**:
+  - Include legal disclaimers and regulatory context where relevant.
+  - Provide clear risk disclosures and mitigation strategies in the Security/Risk section.
+
+- **Version Control & Reviews**:
+  - Branch per section: `sections/<section-name>`; PR title: `[Section] <Name>`.
+  - Require cross-review by at least one agent not involved in drafting before integration.
+  - Editor has final say on taxonomy and tone alignment.
+
+- **Acceptance Criteria (Per Section)**:
+  - Helper doc exists and is linked in the PR description.
+  - Section adheres to the style guide and level-200 depth.
+  - Citations are present for key claims; figures are placed and captioned.
+  - QA confirms no duplication with other sections and consistent terminology.
+
+- **Bootstrap & Start Orchestration**:
+  - Trigger: When the user types `start` or `/start`, initiate the orchestration.
+  - Prerequisite: Ensure an `ideation/` folder exists with seed content (notes, diagrams, links). If missing, create `ideation/README.md` and pause for content.
+  - Steps:
+    1) Ideation Synthesis: Scan `ideation/` and create `yellowpaper/helpers/00-ideation-synthesis-helper.md` summarizing objectives, scope, audience, constraints, core claims, and candidate sections. Extract tentative glossary terms and citations.
+    2) References & Glossary Seeding: Normalize citations into `yellowpaper/context/references.md` with [REF-###] keys. Add terms to `yellowpaper/context/glossary.md`.
+    3) Outline Seeding: Update `yellowpaper/outline.md` from the synthesis. Keep one "Active Section".
+    4) Workplan: Create `yellowpaper/work/workplan.md` (roles, sequence), `yellowpaper/work/backlog.md` (section backlog), and `yellowpaper/work/sync-log.md` (brief sync notes).
+    5) Kickoff Turn-Taking: Start with Abstract as the Active Section; Supporting Agent drafts helper doc → Section Lead writes → Editor integrates → QA checks.
+    6) Research: Use @Web to validate and supplement ideation claims; record sources in the helper doc and `references.md`.
+  - Re-ingestion: On changes in `ideation/`, re-run synthesis and reconcile outline, glossary, and references, preserving stable citation keys when possible.
+

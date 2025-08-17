@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+---
+### Yellow Paper Style and Consistency Guide
+
+- **Tone & Voice**:
+  - Professional, precise, and accessible; avoid hype, marketing language, or speculative claims without evidence.
+  - Prefer active voice and short, information-dense sentences.
+
+- **Depth & Scope**:
+  - Target level-200: architectural clarity, invariants, interfaces, trade-offs; omit code-level details and implementation minutiae.
+
+- **Structure**:
+  - Each section should begin with: Purpose, Scope, Dependencies.
+  - Use headings no deeper than h3; avoid long paragraphs; use numbered lists for processes.
+  - Ideation-Driven Inputs: Treat `ideation/` content as the primary narrative source. Clearly separate user-provided facts from new assumptions or @Web-derived additions.
+
+- **Terminology & Glossary**:
+  - Use canonical terms defined in `yellowpaper/context/glossary.md`.
+  - If a new term is introduced, add it to the glossary with a concise definition before merging.
+
+- **Cross-Referencing**:
+  - Link related sections and figures using anchors. Example: “See Architecture Overview §2.3”.
+
+- **Citations**:
+  - Use bracketed citation keys like [REF-001] mapped in `yellowpaper/context/references.md`.
+  - Place a References list at the end; prefer primary sources and standards.
+  - Evidence Ladder: prioritize (1) ideation-provided sources, (2) primary specs/standards, (3) reputable whitepapers/books, (4) high-quality articles.
+
+- **Figures & Tables**:
+  - Store in `yellowpaper/figures/` with filenames: `fig-<N>-<slug>.(png|svg|pdf)`.
+  - Caption format: “Figure N: <title>”. Maintain consistent styles.
+
+- **Numbers & Claims**:
+  - Include units, conditions, and assumptions. Specify ranges or error bounds when relevant.
+
+- **Security & Risk Language**:
+  - Clearly separate assumptions, threat models, mitigations, and residual risks.
+
+- **Duplication & Redundancy Prevention**:
+  - Before adding new content, search existing sections and the glossary for overlapping concepts.
+  - Prefer referencing existing explanations over re-stating them. The Editor may request consolidation when overlap exceeds 2-3 sentences.
+  - Re-ingestion Discipline: When `ideation/` updates, prefer incremental edits over rewrites; keep glossary terms and [REF-###] keys stable unless corrections are required.
+
+- **Contributor Checklist (pre-PR)**:
+  - Section adheres to level-200 scope and uses canonical terms
+  - Links to helper doc and references are present
+  - No duplication with existing sections
+  - Figures/tables follow naming and captioning rules
+  - Added/updated glossary entries as needed
+

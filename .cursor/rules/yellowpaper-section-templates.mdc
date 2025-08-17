@@ -1,0 +1,79 @@
+---
+description: Templates for helper docs and section drafts to ensure coherence
+---
+### Yellow Paper Templates
+
+- **Helper Doc Template** (create in `yellowpaper/helpers/<section>-helper.md`):
+
+```
+# <Section Name> — Helper Doc
+
+Purpose: <1-2 sentences>
+Scope: <what is in/out>
+Dependencies: <related sections/terms>
+
+Key Definitions:
+- Term A — definition
+- Term B — definition
+
+Key Claims (with sources):
+1) <claim> [REF-###]
+2) <claim> [REF-###]
+
+Comparative Context:
+- <short bullets contrasting alternatives>
+
+Proposed Figures/Tables:
+- Figure: <title and what it shows>
+- Table: <columns and rationale>
+
+Assumptions & Constraints:
+- <assumption>
+
+References:
+- [REF-###] <citation>
+```
+
+- **Section Draft Template** (create in `yellowpaper/sections/<section>.md`):
+
+```
+# <Section Title>
+
+Purpose
+- <brief purpose>
+
+Scope
+- <in/out of scope>
+
+Dependencies
+- <links to related sections>
+
+Content
+1. <subtopic heading>
+   - <concise explanation at level-200>
+   - <cross-references and citations>
+
+Figures
+- Figure N: <caption> (see `yellowpaper/figures/fig-N-slug.png`)
+
+Key Takeaways
+- <bulleted summary>
+```
+
+- **References File Template** (create/update `yellowpaper/context/references.md`):
+
+```
+# References
+
+- [REF-001] Author, Title, Year, URL
+- [REF-002] Standard/Spec, Title, Organization, Year, URL
+```
+
+- **Glossary File Template** (create/update `yellowpaper/context/glossary.md`):
+
+```
+# Glossary
+
+- CanonicalTerm: <short definition and role>
+```
+
